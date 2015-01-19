@@ -1,0 +1,46 @@
+#import pdb
+
+def is_prime(num):
+    #sqrt = x**(1/2.0)
+    #To save time, test only up to sqrt(n), rounded up
+    for i in range(2, int(num**(1/2.0))+1):
+        if num%i==0:
+            return 0
+
+# http://stackoverflow.com/questions/17778372/why-does-my-python-function-return-none
+# To return a value other than None, you need to use a return statement.
+# In your case, the if block only executes a return when executing one branch.
+# Either move the return outside of the if/else block, or have returns in both options.
+
+def next_no(num):
+    x = 0
+    if is_prime(num) == None:
+       # pdb.set_trace()
+        return num
+    else:
+        num += 1
+        return next_no(num)
+
+
+
+def genprime(num):
+    #if num is not a prime
+    if is_prime(num)==0:
+        x = next_no(num)
+        print x
+        return x
+    else:
+        print num
+        return num
+
+ans = "yes"
+snum = 2
+
+while ans == "yes":
+    print "Get prime no?"
+    ans = raw_input()
+    if ans == "yes":
+        snum = genprime(snum)
+        snum += 1
+
+
